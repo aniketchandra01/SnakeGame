@@ -27,7 +27,7 @@ class SnakeBody:
             x = self.body[piece - 1].xcor()
             y = self.body[piece - 1].ycor()
             self.body[piece].goto(x, y)
-        self.head.forward(10)
+        self.head.forward(20)
 
     def go_up(self):
         if self.head.heading() != 270:
@@ -54,6 +54,10 @@ class SnakeBody:
         snake.penup()
         snake.goto(self.body[-1].position())
         self.body.append(snake)
+
+    def delete_snake(self):
+        for x in self.body:
+            x.goto(1000,1000)
 
 
 

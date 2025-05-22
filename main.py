@@ -22,12 +22,10 @@ score = scoreboard.Scoreboard()
 
 while game_is_on:
 
-
-    screen.onkey(snake.go_up,"Up")
+    screen.onkey(snake.go_up, "Up")
     screen.onkey(snake.go_down, "Down")
     screen.onkey(snake.go_left, "Left")
     screen.onkey(snake.go_right, "Right")
-
     screen.update()
     snake.move()
     time.sleep(0.1)
@@ -39,14 +37,14 @@ while game_is_on:
         snake.update_snakebody()
 
     if snake.head.xcor() >= 270 or snake.head.xcor() <= -270 or snake.head.ycor() <= -270 or snake.head.ycor() >= 270 :
-        game_is_on = False
-        score.game_over()
+        score.reset()
+        snake.delete_snake()
+        snake = SnakeBody()
 
     for piece in snake.body:
         if piece == snake.head :
                 pass
         elif snake.head.distance(piece) < 10:
-            game_is_on = False
-            score.game_over()
-
-screen.mainloop()
+            score.reset()
+            snake.delete_snake()
+            snake = SnakeBody()
